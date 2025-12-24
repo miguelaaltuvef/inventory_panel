@@ -31,6 +31,9 @@ Este proyecto forma parte de un portafolio profesional para Upwork.
 - Panel visual limpio en tonos oscuros/grises
 - Restricción de acceso usando decoradores `@login_required`
 
+> El proyecto está estructurado para ser fácilmente escalable y adaptable a necesidades reales de negocio.
+
+
 ---
 
 ## 🛠️ Instalación y ejecución
@@ -89,11 +92,29 @@ python manage.py runserver
 ```bash
 http://127.0.0.1:8000/
 ```
-📷 Capturas
+## 📷 Capturas
 
-(Se agregarán capturas cuando el proyecto esté publicado en GitHub)
+### Login
+![Login](screenshots/login.png)
 
-📄 Licencia
+### Dashboard
+![Dashboard](screenshots/dashboard.png)
+
+### Productos
+![Productos](screenshots/products.png)
+
+### Formulario
+![Formulario](screenshots/product_form.png)
+
+## 🔐 Usuario de prueba
+
+- Usuario: admin
+- Contraseña: admin123
+
+*(Solo disponible en entorno local)*
+
+
+## 📄 Licencia
 
 MIT License
 
