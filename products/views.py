@@ -6,14 +6,17 @@ from .models import Product, Category
 from .forms import ProductForm, CategoryForm
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.http import require_POST
 from django.contrib.auth import logout
 from django.contrib.auth.models import User
 from django.core.exceptions import PermissionDenied
+from functools import wraps
 
 def admin_required(view_func):
+    @wraps(view_func)
     def wrapper(request, *args, **kwargs):
         if not request.user.is_superuser:
-            raise PermissionDenied  # Error 403
+            raise PermissionDenied
         return view_func(request, *args, **kwargs)
     return wrapper
 
@@ -75,6 +78,7 @@ def product_update(request, pk):
 # --- ELIMINAR PRODUCTO ---
 @login_required
 @admin_required
+@require_POST
 def product_delete(request, pk):
     product = get_object_or_404(Product, pk=pk)
     if request.method == 'POST':
@@ -136,6 +140,7 @@ def category_update(request, pk):
 # --- ELIMINAR CATEGORÍA ---
 @login_required
 @admin_required
+@require_POST
 def category_delete(request, pk):
     category = get_object_or_404(Category, pk=pk)
     if request.method == 'POST':
@@ -195,6 +200,7 @@ def user_create(request):
 
 @login_required
 @admin_required
+@require_POST
 def user_toggle_active(request, pk):
     user = get_object_or_404(User, pk=pk)
     user.is_active = not user.is_active
